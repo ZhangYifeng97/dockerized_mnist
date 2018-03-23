@@ -1,13 +1,18 @@
 
-Dockerized application for classifying handwritten numbers
+Dockerized Single-digit Number Classification
 ====================
-This application uses mnist_deep model from the examples of *tensorflow*.
+This application uses:
+* Docker CE
+* A deep net model trained by MNIST with tensorflow
+* Flask
+* Cassandra
+
 
 When running it, follow the following steps:
 
-* Create a docker network
+* Create a docker network (in my case, "some-net")
 * Start a Cassandra container, and initialize it using cass_init.py
-* Run the app image (which I call "one") in a container, and connect it to the network
-* Use "curl" to post a png file to the app, and get a JSON containing the number, and the time stamp
-* Use cqlsh in cassandra to check the history of posted files
+* Run the app image (in my case, "one:latest") in a container, and connect it to the network
+* Use "curl" to post a *png* file to the app, getting a JSON containing the number identified by the model and the time stamp as return
+* Use cqlsh in cassandra to check the history of posted files (time stamp, file name, identified digit)
 
